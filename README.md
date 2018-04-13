@@ -1,58 +1,30 @@
-# Scholar Accounts
+# High-level Boot Sequence Overview
+Below are the steps required for booting up a new DAWN 3.0 testnet, following closely to [Thomas Cox's proposed BIO Booting article](https://medium.com/eosio/bios-boot-eosio-blockchain-2b58b8a978a1).
 
-[![Build Status](https://travis-ci.org/ScholarTestnet/scholar-accounts.svg?branch=master)](https://travis-ci.org/ScholarTestnet/scholar-accounts)
+## Pre-boot
 
-List of Developers & Block Producers for Scholar Testnet.
+1. One person will be chosen as the Boot Node.
 
-During each new launch of Scholar Testnet, new accounts will be generated for both Developers & Block Producers. Due to privacy concerns, a "fake" EOS snapshot will be generated for each account that is aimed to be deployed on the Scholar Testnet.
+## Boot Node
 
-# For Developpers
+1. The Boot Node will grab the [Scholar Testnet Fake Snapshot](https://github.com/ScholarTestnet/scholar-accounts/blob/master/scripts/generate-snapshot.js). `((REPLACE THIS LINK WITH THE ACTUAL SNAPSHOT INSTEAD OF THE SCRIPT))`
+2. The Boot Node will grab the [Scholar Testnet Genesis Block](https://raw.githubusercontent.com/ScholarTestnet/scholar-server-config/master/genesis.json).
+3. The Boot Node will generate a new EOS Keypair to be used for the Boot Process  `(( CREATE SCRIPT THAT TAKES CARE OF STEPS 1-3 HERE  ))`
+4. The Boot Node will then:
 
-For those developers interested in joining the Scholar Testnet to test their latest DApps.
+   1. Build the first block, `(( CREATE SCRIPT ))`
+   2. Install the core operating contracts via the keypair generated above, `(( CREATE SCRIPT ))`
+   3. Install the [list of 21 appointed block producers (ABPs)](https://github.com/ScholarTestnet/scholar-accounts/blob/master/bios/create-accounts.sh),
+   4. Assign system powers to the 21 ABPs so they can hold initial elections (and no more),  `(( CREATE SCRIPT ))`
+   5. Publish his private key from the keypair generated above (just posting it on Telegram is fine for our purposes).
 
-Add your developer credentials in the [scholar-accounts repo](https://github.com/ScholarTestnet/scholar-accounts) under `/developers/<YOUR NAME>.yml` via Github pull request, your YAML config should include the following:
+## Appointed Block Producers
 
-**Required fields:**
-- account_name
-- owner_public_key
-- active_public_key
+1. The ABPs connect and validate the setup.
+2. Anyone else can now connect.
+3. The ABPs launch and hold the elections in which they (and the initial Boot Node) are ineligible for voting (in our case, we should just bypass this and allow them to be eligible from the get-go if possible).
 
-**Optional fields:**
-- telegram_user
-- keybase
+## Elected Block Producers
 
-During the provisioning process (testnet BIOS Boot) accounts will be created for each developer and a certain amount of EOS tokens will transfered to those accounts to allow the developers to properly test their DApps.
-
-> Note: These EOS tokens in these developer accounts are generated from a "fake" EOS snapshot, during the EOS maintnet, you will need to purchase your own EOS tokens to deploy your DApps.
-
-# For Block Producers
-
-1. Submit a Pull Request to `block-producers` with your server credentials.
-2. TravisCI tests must pass (fail = missing required server configuration)
-
-### Accounts:
-
-- [Keybase](https://keybase.io) (must have a generated public key)
-- [telegram_user](https://telegram_user.org) (must be a single username, not a group)
-
-## Block Signing Key
-
-EOS Public key used for creating blocks, if none is provided before the launch of the Testnet. An EOS key pair will be generated for you and sent via your Keybase account.
-
-```
-$ cleos create key
-Private key: <EOS PRIVATE KEY>
-Public key: EOS78uKLgYYSgQHXyJbbjDzXpibChtcYGKmooz8AmyiDhTiaC1Syz
-```
-
-## Server Configurations:
-
-- Domain name associated with server (ex: `testnet.<domain>.io` )
-- SSL enabled (443 prefered, however other ports can be used)
-
-## Metadata:
-
-- Organization/Community name
-- Website
-- Agent Name
-- Logo (small logo, 100x100 pixel)
+1. The EBPs continue to produce blocks as normal.
+2. After 10 rounds, the EBPs can be replaced by any of the ABPs or the initial Boot Node if the votes allow.
