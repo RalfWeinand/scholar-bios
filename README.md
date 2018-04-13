@@ -7,8 +7,8 @@ Below are the steps required for booting up a new DAWN 3.0 testnet, following cl
 
 ## Boot Node
 
-1. The Boot Node will grab the [Scholarnet Fake Snapshot](https://github.com/ScholarTestnet/scholar-accounts/blob/master/scripts/generate-snapshot.js). `((REPLACE THIS LINK WITH THE ACTUAL SNAPSHOT INSTEAD OF THE SCRIPT))`
-2. The Boot Node will grab the [Scholarnet Genesis Block](https://raw.githubusercontent.com/ScholarTestnet/scholar-server-config/master/genesis.json).
+1. The Boot Node will grab the [Scholar Testnet Fake Snapshot](https://github.com/ScholarTestnet/scholar-accounts/blob/master/scripts/generate-snapshot.js). `((REPLACE THIS LINK WITH THE ACTUAL SNAPSHOT INSTEAD OF THE SCRIPT))`
+2. The Boot Node will grab the [Scholar Testnet Genesis Block](https://raw.githubusercontent.com/ScholarTestnet/scholar-server-config/master/genesis.json).
 3. The Boot Node will generate a new EOS Keypair to be used for the Boot Process  `(( CREATE SCRIPT THAT TAKES CARE OF STEPS 1-3 HERE  ))`
 4. The Boot Node will then:
 
