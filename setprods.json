@@ -1,0 +1,7 @@
+{
+  "version": 12345,
+  "producers": [
+    {"producer_name":"denis.c", "block_signing_key": "EOS78uKLgYYSgQHXyJbbjDzXpibChtcYGKmooz8AmyiDhTiaC1Syz"},
+    {"producer_name":"eosio", "block_signing_key": "EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV"}
+  ]
+}
